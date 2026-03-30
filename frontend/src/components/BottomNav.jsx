@@ -15,7 +15,7 @@ export default function BottomNav({ screen, navigateTo }) {
   if (!visibleScreens.includes(screen)) return null;
 
   return (
-    <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-md z-50">
+    <div className="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-md z-50 lg:hidden">
       <div className="bg-white border-t border-gray-200 shadow-[0_-8px_32px_rgba(0,0,0,0.08)] px-3 pt-3 pb-[env(safe-area-inset-bottom,10px)] flex items-center justify-around gap-1">
         {tabs.map(tab => {
           const isActive = screen === tab.id;
