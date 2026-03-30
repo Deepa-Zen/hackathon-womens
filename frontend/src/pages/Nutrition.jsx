@@ -55,71 +55,73 @@ export default function Nutrition({
 
   return (
     <FullScreenOverlay onClose={() => navigateTo('dashboard', 'Going to Home...')} title={t.nutrition}>
-      <div className="p-5 space-y-6">
+      <div className="p-5 space-y-6 pb-32">
         
         {/* PERSONALIZED GOAL CARD */}
-        <div className={`${goal.bg} p-5 rounded-[32px] border border-opacity-50 flex items-center space-x-4 shadow-sm`}>
-          <div className="bg-white/80 p-3 rounded-2xl shadow-sm">
-            <span className="text-xl font-black text-slate-800">{bmi}</span>
-            <p className="text-[8px] font-black uppercase text-slate-400 text-center tracking-tighter mt-0.5">BMI</p>
+        <div className={`${goal.bg} p-6 rounded-2xl border border-opacity-60 flex items-center gap-4 shadow-sm hover:shadow-md transition-all duration-300`}>
+          <div className="bg-white/70 backdrop-blur-sm p-4 rounded-xl shadow-sm flex-shrink-0">
+            <span className="text-2xl font-black text-gray-800">{bmi}</span>
+            <p className="text-[8px] font-bold uppercase text-gray-500 text-center tracking-tight mt-1">BMI</p>
           </div>
-          <div>
-            <h4 className={`text-xs font-black uppercase tracking-widest ${goal.color}`}>{goal.label}</h4>
-            <p className="text-sm font-bold text-slate-700 leading-tight mt-1">{goal.advice}</p>
+          <div className="flex-1">
+            <h4 className={`text-xs font-bold uppercase tracking-widest ${goal.color}`}>{goal.label}</h4>
+            <p className="text-sm font-semibold text-gray-700 leading-snug mt-1.5">{goal.advice}</p>
           </div>
         </div>
-        <div className="bg-emerald-50 border border-emerald-100 p-5 rounded-[24px]">
-          <h3 className="font-bold text-emerald-800 text-lg flex items-center">
-            <Apple className="mr-2 text-emerald-500" size={20} /> இன்றைய ஊட்டச்சத்து
+
+        {/* NUTRITION TRACKER */}
+        <div className="bg-gradient-to-br from-emerald-50 to-green-50 border border-emerald-200 p-6 rounded-2xl shadow-sm">
+          <h3 className="font-bold text-gray-900 text-base flex items-center gap-2 mb-1">
+            <Apple className="text-emerald-600" size={20} /> Today's Nutrition
           </h3>
-          <p className="text-xs text-emerald-600 font-medium mt-1">Daily Nutrition Value Tracker</p>
+          <p className="text-xs text-emerald-700 font-medium mb-5">Daily Nutrition Value Tracker</p>
           
-          <div className="flex justify-between mt-5">
-            <div className="text-center group">
-              <p className="text-[10px] uppercase font-black text-slate-400 tracking-widest group-hover:text-rose-400 transition-colors">Iron</p>
-              <p className="text-lg font-black text-rose-500 mt-0.5">{nutrientValues.iron}%</p>
+          <div className="grid grid-cols-3 lg:grid-cols-3 gap-3 lg:gap-4">
+            <div className="group">
+              <p className="text-[9px] uppercase font-bold text-gray-600 tracking-tight">Iron</p>
+              <div className="relative mt-2 h-2 bg-white/40 rounded-full overflow-hidden">
+                <div className="h-full bg-rose-500 rounded-full transition-all duration-500" style={{width: `${Math.min(nutrientValues.iron, 100)}%`}}></div>
+              </div>
+              <p className="text-sm font-black text-rose-600 mt-2">{nutrientValues.iron}%</p>
             </div>
-            <div className="text-center group">
-              <p className="text-[10px] uppercase font-black text-slate-400 tracking-widest group-hover:text-blue-400 transition-colors">Calcium</p>
-              <p className="text-lg font-black text-blue-500 mt-0.5">{nutrientValues.calcium}%</p>
+            <div className="group">
+              <p className="text-[9px] uppercase font-bold text-gray-600 tracking-tight">Calcium</p>
+              <div className="relative mt-2 h-2 bg-white/40 rounded-full overflow-hidden">
+                <div className="h-full bg-blue-500 rounded-full transition-all duration-500" style={{width: `${Math.min(nutrientValues.calcium, 100)}%`}}></div>
+              </div>
+              <p className="text-sm font-black text-blue-600 mt-2">{nutrientValues.calcium}%</p>
             </div>
-            <div className="text-center group">
-              <p className="text-[10px] uppercase font-black text-slate-400 tracking-widest group-hover:text-emerald-400 transition-colors">Protein</p>
-              <p className="text-lg font-black text-emerald-500 mt-0.5">{nutrientValues.protein}%</p>
+            <div className="group">
+              <p className="text-[9px] uppercase font-bold text-gray-600 tracking-tight">Protein</p>
+              <div className="relative mt-2 h-2 bg-white/40 rounded-full overflow-hidden">
+                <div className="h-full bg-emerald-500 rounded-full transition-all duration-500" style={{width: `${Math.min(nutrientValues.protein, 100)}%`}}></div>
+              </div>
+              <p className="text-sm font-black text-emerald-600 mt-2">{nutrientValues.protein}%</p>
             </div>
           </div>
         </div>
 
         {/* SMART AI FOOD ANALYZER */}
-        <div className="bg-white border border-indigo-100 p-5 rounded-3xl shadow-sm mb-6 relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-indigo-50 rounded-full blur-3xl -mr-10 -mt-10 pointer-events-none"></div>
-          <div className="relative z-10">
-            <h4 className="text-xs font-black text-indigo-600 uppercase tracking-widest mb-3 flex items-center">
-              <span className="w-2 h-2 bg-indigo-500 rounded-full animate-ping mr-2"></span> AI Food Scanner
-            </h4>
-            <div className="flex bg-slate-50 rounded-2xl border border-slate-100 p-1.5 focus-within:ring-2 focus-within:ring-indigo-200 transition-all">
-              <input 
-                type="text" 
-                value={customFood}
-                onChange={(e) => setCustomFood(e.target.value)}
-                placeholder="What did you eat? (e.g. 2 Apples)"
-                className="flex-1 w-full bg-transparent px-3 py-2 text-sm font-semibold outline-none placeholder:font-normal placeholder:text-slate-400"
-                onKeyDown={(e) => e.key === 'Enter' && analyzeFood()}
-              />
-              <button 
-                onClick={analyzeFood}
-                disabled={!customFood.trim() || isAnalyzing}
-                className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 rounded-xl text-xs font-black uppercase tracking-wider transition-all disabled:opacity-50 disabled:scale-100 active:scale-95 flex items-center justify-center min-w-[80px]"
-              >
-                {isAnalyzing ? (
-                  <div className="flex space-x-1">
-                    <div className="w-1.5 h-1.5 bg-white rounded-full animate-bounce [animation-delay:-0.3s]"></div>
-                    <div className="w-1.5 h-1.5 bg-white rounded-full animate-bounce [animation-delay:-0.15s]"></div>
-                    <div className="w-1.5 h-1.5 bg-white rounded-full animate-bounce"></div>
-                  </div>
-                ) : "Add"}
-              </button>
-            </div>
+        <div className="bg-white border border-indigo-150 p-6 rounded-2xl shadow-sm hover:shadow-md transition-all duration-300">{"\n"}
+          <h4 className="text-xs font-bold text-indigo-700 uppercase tracking-widest mb-4 flex items-center gap-2">
+            <span className="w-2 h-2 bg-indigo-500 rounded-full animate-pulse"></span> AI Food Scanner
+          </h4>
+          <div className="flex bg-gray-100 rounded-xl border border-gray-200 p-1 focus-within:ring-2 focus-within:ring-indigo-400 transition-all">
+            <input 
+              type="text" 
+              value={customFood}
+              onChange={(e) => setCustomFood(e.target.value)}
+              placeholder="What did you eat? (e.g. 2 Apples)"
+              className="flex-1 bg-transparent px-4 py-2.5 text-sm font-semibold outline-none placeholder:font-normal placeholder:text-gray-400"
+              onKeyDown={(e) => e.key === 'Enter' && analyzeFood()}
+            />
+            <button 
+              onClick={analyzeFood}
+              disabled={!customFood.trim() || isAnalyzing}
+              className="bg-indigo-600 hover:bg-indigo-700 text-white px-5 rounded-lg text-xs font-bold uppercase tracking-tight transition-all disabled:opacity-50 active:scale-95"
+            >
+              {isAnalyzing ? '...' : "Add"}
+            </button>
           </div>
         </div>
 

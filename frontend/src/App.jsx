@@ -530,38 +530,38 @@ export default function App() {
   const toggleLang = () => setLang(l => l === 'en' ? 'ta' : 'en');
 
   return (
-    <div className={`min-h-[100dvh] font-sans ${offline ? 'bg-gray-100' : 'bg-gradient-to-br from-rose-50 to-teal-50'} flex justify-center text-gray-800`}>
-      <div className="w-full max-w-md bg-white shadow-2xl relative overflow-hidden flex flex-col h-[100dvh]">
+    <div className={`min-h-[100dvh] font-sans ${offline ? 'bg-gray-100' : 'bg-gradient-to-br from-rose-50 to-teal-50'} flex justify-center items-start text-gray-800`}>
+      <div className="w-full max-w-md lg:max-w-4xl xl:max-w-6xl bg-white shadow-2xl lg:rounded-3xl lg:my-4 lg:shadow-2xl relative overflow-hidden flex flex-col min-h-[100dvh] lg:min-h-auto">
         
         {/* GLOBAL HEADER & SIDEBAR TRIGGER */}
         {screen === 'dashboard' && (
-          <div className="bg-indigo-600 px-5 py-4 flex items-center justify-between z-[100] shrink-0 border-b border-indigo-700/50 shadow-lg relative">
+          <div className="bg-gradient-to-r from-indigo-600 to-indigo-700 px-5 lg:px-8 py-4 flex items-center justify-between z-[100] shrink-0 border-b border-indigo-700/50 shadow-lg relative">
             
             {/* Sidebar Toggle & Modern Logo */}
-            <div className="flex items-center space-x-3">
+            <div className="flex items-center gap-3">
               <button 
                 onClick={() => setShowSidebar(true)}
-                className="bg-white/10 hover:bg-white/20 p-2 rounded-xl border border-white/10 backdrop-blur-md transition-all active:scale-90"
+                className="lg:hidden bg-white/10 hover:bg-white/20 hover:scale-105 p-2 rounded-xl border border-white/15 backdrop-blur-md transition-all active:scale-95 duration-200"
               >
-                <Menu size={20} className="text-white" />
+                <Menu size={20} className="text-white" strokeWidth={2} />
               </button>
-              <div className="flex items-center space-x-2.5 bg-white/10 px-3 py-1.5 rounded-2xl border border-white/5 shadow-inner overflow-hidden">
-                <img src="/yoga/breathing.png" alt="MHC Logo" className="w-8 h-8 object-contain rounded-full bg-white scale-110 shadow-sm" />
-                <div>
-                   <span className="block text-[10px] text-indigo-100 font-black tracking-widest leading-none uppercase">Maternal</span>
-                   <span className="block text-[8px] text-white font-bold opacity-70 tracking-tighter">APP LOGO</span>
+              <div className="flex items-center gap-2.5 bg-white/10 px-3 py-1.5 rounded-2xl border border-white/10 backdrop-blur-md hover:bg-white/15 transition-all duration-200">
+                <img src="/yoga/breathing.png" alt="MHC Logo" className="w-8 h-8 object-contain rounded-full bg-white/20 scale-110 shadow-sm" />
+                <div className="hidden sm:block">
+                   <span className="block text-[10px] text-indigo-100 font-bold tracking-widest leading-none uppercase">Maternal</span>
+                   <span className="block text-[8px] text-white font-semibold opacity-70 tracking-tighter">Companion</span>
                 </div>
               </div>
             </div>
             
             <div className="relative">
-              {/* Elegant Button */}
+              {/* Language Button */}
               <button 
                 onClick={() => setShowLangMenu(!showLangMenu)}
-                className="group flex items-center space-x-2 bg-white/10 hover:bg-white/25 active:scale-95 transition-all duration-200 px-4 py-2 rounded-xl border border-white/20 backdrop-blur-md shadow-sm"
+                className="group flex items-center gap-2 bg-white/10 hover:bg-white/20 active:scale-95 transition-all duration-200 px-4 py-2 rounded-xl border border-white/20 backdrop-blur-md shadow-sm"
               >
                 <Globe size={14} className="text-indigo-100 group-hover:text-white transition-colors" />
-                <span className="text-white text-xs font-bold tracking-wider">{activeLang.toUpperCase()}</span>
+                <span className="text-white text-xs font-bold tracking-wider hidden sm:inline">{activeLang.toUpperCase()}</span>
                 <ChevronDown size={14} className={`text-indigo-200 transition-transform duration-300 ${showLangMenu ? 'rotate-180' : ''}`} />
               </button>
 
@@ -569,12 +569,12 @@ export default function App() {
               {showLangMenu && (
                 <>
                   <div className="fixed inset-0 z-[110]" onClick={() => setShowLangMenu(false)} />
-                  <div className="absolute right-0 top-full mt-3 w-56 bg-white rounded-2xl shadow-2xl z-[120] overflow-hidden border border-slate-100 ring-1 ring-black/5 animate-in slide-in-from-top-2 fade-in duration-200">
+                  <div className="absolute right-0 top-full mt-3 w-56 bg-white rounded-2xl shadow-2xl z-[120] overflow-hidden border border-gray-200 ring-1 ring-black/5 animate-in slide-in-from-top-2 fade-in duration-200">
                     
                     {/* Menu Header */}
-                    <div className="bg-slate-50 px-4 py-3 border-b border-slate-100/80 flex items-center justify-between">
-                      <span className="text-[10px] uppercase font-black tracking-widest text-slate-400">Select Region</span>
-                      <Globe size={12} className="text-slate-300" />
+                    <div className="bg-gray-50 px-4 py-3 border-b border-gray-200/80 flex items-center justify-between">
+                      <span className="text-[10px] uppercase font-bold tracking-widest text-gray-500">Select Language</span>
+                      <Globe size={12} className="text-gray-400" />
                     </div>
                     
                     {/* Language List */}
@@ -597,12 +597,12 @@ export default function App() {
                             setShowLangMenu(false);
                             localStorage.setItem('mhc_lang', l.code);
                           }}
-                          className={`w-full flex items-center justify-between px-4 py-3 rounded-xl transition-all duration-200 group ${activeLang === l.code ? 'bg-indigo-50 text-indigo-700 shadow-sm' : 'hover:bg-slate-50 border border-transparent'}`}
+                          className={`w-full flex items-center justify-between px-4 py-3 rounded-lg transition-all duration-200 group ${activeLang === l.code ? 'bg-indigo-50 text-indigo-700 shadow-sm' : 'hover:bg-gray-50 border border-transparent'}`}
                         >
-                          <span className={`text-sm tracking-wide ${activeLang === l.code ? 'font-black' : 'font-semibold text-slate-700 group-hover:text-indigo-600'}`}>
+                          <span className={`text-sm tracking-tight ${activeLang === l.code ? 'font-bold' : 'font-semibold text-gray-700 group-hover:text-indigo-600'}`}>
                             {l.native}
                           </span>
-                          <span className={`text-[10px] uppercase tracking-wider ${activeLang === l.code ? 'text-indigo-400 font-bold' : 'text-slate-400'}`}>
+                          <span className={`text-[10px] uppercase tracking-wider ${activeLang === l.code ? 'text-indigo-400 font-bold' : 'text-gray-500'}`}>
                             {l.label}
                           </span>
                         </button>
@@ -620,25 +620,25 @@ export default function App() {
           
           {/* REGISTRATION */}
           {screen === 'register' && (
-            <div className="p-8 flex flex-col items-center justify-center h-full text-center space-y-6 animate-in slide-in-from-bottom-5 fade-in duration-500">
-              <div className="w-20 h-20 bg-rose-100 rounded-full flex items-center justify-center shadow-inner mb-2">
-                <HeartPulse className="text-rose-500" size={40} />
+            <div className="p-8 flex flex-col items-center justify-center h-full text-center space-y-6 animate-in fade-in slide-in-from-bottom-8 duration-500">
+              <div className="w-20 h-20 bg-gradient-to-br from-rose-100 to-rose-50 rounded-full flex items-center justify-center shadow-lg mb-2 animate-in zoom-in-75 duration-700">
+                <HeartPulse className="text-rose-500 animate-pulse" size={40} />
               </div>
-              <div>
-                <h1 className="text-2xl font-bold text-gray-900 mb-2">{t.welcome}</h1>
-                <p className="text-sm text-gray-500">{t.registerDesc}</p>
+              <div className="animate-in fade-in slide-in-from-top-4 duration-500">
+                <h1 className="text-3xl font-black text-gray-900 mb-3">{t.welcome}</h1>
+                <p className="text-sm text-gray-600 leading-relaxed">{t.registerDesc}</p>
               </div>
 
-              <form onSubmit={handleRegister} className="w-full space-y-4 mt-6">
-                <div className="text-left space-y-1.5 px-1">
-                  <label className="text-[10px] uppercase font-black text-slate-400 ml-1 tracking-widest flex items-center">
+              <form onSubmit={handleRegister} className="w-full space-y-4 mt-8 animate-in fade-in duration-700">
+                <div className="text-left space-y-2 px-1">
+                  <label className="text-[10px] uppercase font-bold text-gray-500 ml-1 tracking-widest flex items-center">
                     <Users size={12} className="mr-1.5"/> {t.fullName}
                   </label>
-                  <input required type="text" placeholder="Enter your name" value={userName} onChange={e=>setUserName(e.target.value)} className="w-full px-5 py-4 rounded-2xl bg-slate-50 border border-slate-100 focus:outline-none focus:ring-2 focus:ring-rose-400 focus:bg-white transition-all text-sm font-bold placeholder:font-normal placeholder:text-slate-300 shadow-sm" />
+                  <input required type="text" placeholder="Enter your name" value={userName} onChange={e=>setUserName(e.target.value)} className="w-full px-5 py-4 rounded-2xl bg-gray-50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-rose-400 focus:bg-white transition-all duration-200 text-sm font-semibold placeholder:font-normal placeholder:text-gray-400 shadow-sm hover:shadow-md" />
                 </div>
 
-                <div className="text-left space-y-1.5 px-1">
-                  <label className="text-[10px] uppercase font-black text-slate-400 ml-1 tracking-widest flex items-center">
+                <div className="text-left space-y-2 px-1">
+                  <label className="text-[10px] uppercase font-bold text-gray-500 ml-1 tracking-widest flex items-center">
                     <PhoneCall size={12} className="mr-1.5"/> {t.trustedContact}
                   </label>
                   <input 
@@ -648,27 +648,27 @@ export default function App() {
                     value={contact} 
                     onChange={e=>setContact(e.target.value.replace(/\D/g,''))} 
                     maxLength="10"
-                    className="w-full px-5 py-4 rounded-2xl bg-slate-50 border border-slate-100 focus:outline-none focus:ring-2 focus:ring-rose-400 focus:bg-white transition-all text-sm font-bold placeholder:font-normal placeholder:text-slate-300 shadow-sm" 
+                    className="w-full px-5 py-4 rounded-2xl bg-gray-50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-rose-400 focus:bg-white transition-all duration-200 text-sm font-semibold placeholder:font-normal placeholder:text-gray-400 shadow-sm hover:shadow-md" 
                   />
                 </div>
 
                 <div className="grid grid-cols-2 gap-4 px-1">
-                  <div className="text-left space-y-1.5">
-                    <label className="text-[10px] uppercase font-black text-slate-400 ml-1 tracking-widest flex items-center">
+                  <div className="text-left space-y-2">
+                    <label className="text-[10px] uppercase font-bold text-gray-500 ml-1 tracking-widest flex items-center">
                       <Footprints size={12} className="mr-1.5"/> Weight (Kg)
                     </label>
-                    <input required type="number" placeholder="Eg: 60" value={userWeight} onChange={e=>setUserWeight(e.target.value)} className="w-full px-5 py-4 rounded-2xl bg-slate-50 border border-slate-100 focus:outline-none focus:ring-2 focus:ring-rose-400 focus:bg-white transition-all text-sm font-bold shadow-sm" />
+                    <input required type="number" placeholder="Eg: 60" value={userWeight} onChange={e=>setUserWeight(e.target.value)} className="w-full px-5 py-4 rounded-2xl bg-gray-50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-rose-400 focus:bg-white transition-all duration-200 text-sm font-semibold shadow-sm hover:shadow-md" />
                   </div>
-                  <div className="text-left space-y-1.5">
-                    <label className="text-[10px] uppercase font-black text-slate-400 ml-1 tracking-widest flex items-center">
+                  <div className="text-left space-y-2">
+                    <label className="text-[10px] uppercase font-bold text-gray-500 ml-1 tracking-widest flex items-center">
                       <Activity size={12} className="mr-1.5"/> Height (cm)
                     </label>
-                    <input required type="number" placeholder="Eg: 160" value={userHeight} onChange={e=>setUserHeight(e.target.value)} className="w-full px-5 py-4 rounded-2xl bg-slate-50 border border-slate-100 focus:outline-none focus:ring-2 focus:ring-rose-400 focus:bg-white transition-all text-sm font-bold shadow-sm" />
+                    <input required type="number" placeholder="Eg: 160" value={userHeight} onChange={e=>setUserHeight(e.target.value)} className="w-full px-5 py-4 rounded-2xl bg-gray-50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-rose-400 focus:bg-white transition-all duration-200 text-sm font-semibold shadow-sm hover:shadow-md" />
                   </div>
                 </div>
 
                 <div className="pt-4">
-                  <button type="submit" className="group w-full bg-rose-500 hover:bg-rose-600 text-white font-black py-4.5 rounded-[24px] shadow-xl shadow-rose-200 transition-all active:scale-[0.98] flex justify-center items-center text-sm uppercase tracking-[3px] h-14">
+                  <button type="submit" className="group w-full bg-gradient-to-r from-rose-500 to-rose-600 hover:from-rose-600 hover:to-rose-700 text-white font-bold py-4 rounded-2xl shadow-lg shadow-rose-200 hover:shadow-rose-300 transition-all active:scale-[0.98] flex justify-center items-center text-sm uppercase tracking-widest duration-200 h-14">
                     {t.start} <ChevronRight size={20} className="ml-2 group-hover:translate-x-1 transition-transform" />
                   </button>
                 </div>
@@ -678,50 +678,55 @@ export default function App() {
 
           {/* DASHBOARD */}
           {screen === 'dashboard' && (
-            <div className="pb-24 space-y-6 animate-in fade-in duration-300">
+            <div className="pb-24 lg:pb-6 space-y-6 w-full animate-in fade-in duration-500">
 
-              <div className="bg-indigo-600 px-5 pt-5 pb-5 rounded-b-3xl shadow-sm z-10 relative mb-4">
-                <div className="flex justify-between items-center">
+              <div className="bg-indigo-600 px-5 lg:px-8 pt-6 pb-6 rounded-b-[28px] lg:rounded-none shadow-lg relative mb-0 z-10 animate-in slide-in-from-top-4 duration-500 hidden lg:block">
+                <div className="flex justify-between items-start">
                   <div>
-                    <h2 className="text-xl font-bold text-white">Hi, {userName || 'Mother'} 👋</h2>
-                    <p className="text-xs font-semibold text-indigo-200 inline-block mt-1">Week {userStats.week} • Health Tracker</p>
+                    <h2 className="text-3xl font-black text-white mb-2">Hi, {userName || 'Mother'} 👋</h2>
+                    <p className="text-base font-semibold text-indigo-100 flex items-center">
+                      <span className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse mr-2"></span>
+                      Week {userStats.week} • Health Tracker
+                    </p>
                   </div>
-                  <div onClick={() => navigateTo('profile', 'Opening Profile...')} className="w-10 h-10 bg-white/20 text-white rounded-full flex items-center justify-center shadow-sm cursor-pointer hover:bg-white/30 transition-colors border border-white/30">
-                    <Users size={20} />
-                  </div>
+                  <button onClick={() => navigateTo('profile', 'Opening Profile...')} className="w-14 h-14 bg-white/15 backdrop-blur-sm text-white rounded-2xl flex items-center justify-center shadow-lg hover:bg-white/25 transition-all duration-300 border border-white/20 active:scale-90 animate-in zoom-in-75 duration-500">
+                    <Users size={24} strokeWidth={2} />
+                  </button>
                 </div>
               </div>
 
-              <div className="px-5 space-y-5">
+              <div className="px-5 lg:px-8 space-y-5 animate-in fade-in slide-in-from-bottom-4 duration-500 [animation-delay:100ms]">
 
               {/* SOS Button */}
               <div className="relative group cursor-pointer" onClick={startSos}>
-                <div className="absolute -inset-1 bg-gradient-to-r from-red-500 to-rose-600 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200 animate-pulse"></div>
-                <div className="relative bg-gradient-to-br from-red-500 to-rose-600 rounded-2xl p-5 flex items-center justify-between text-white shadow-xl">
-                  <div className="flex items-center space-x-4">
-                    <div className="bg-white/20 p-3 rounded-full">
-                      <ShieldAlert size={28} />
+                <div className="absolute -inset-0.5 bg-gradient-to-r from-red-500 to-rose-500 rounded-2xl blur opacity-30 group-hover:opacity-50 transition-all duration-500 group-active:opacity-20"></div>
+                <div className="relative bg-gradient-to-br from-red-500 via-red-600 to-rose-600 rounded-2xl p-5 lg:p-7 flex items-center justify-between text-white shadow-xl shadow-red-500/30 border border-red-400/30 group-hover:shadow-red-500/50 transition-all duration-300 group-active:scale-[0.98]">
+                  <div className="flex items-center gap-4">
+                    <div className="bg-white/20 backdrop-blur-sm p-3.5 rounded-xl border border-white/20">
+                      <ShieldAlert size={28} strokeWidth={1.5} className="animate-pulse" />
                     </div>
-                    <div>
-                      <h3 className="font-bold text-lg leading-tight">{t.sos}</h3>
-                      <p className="text-red-100 text-xs">Tap to send location & alert</p>
+                    <div className="space-y-0.5">
+                      <h3 className="font-black text-lg lg:text-xl leading-none tracking-tight">{t.sos}</h3>
+                      <p className="text-red-100 text-xs lg:text-sm font-medium">Tap to alert emergency contacts</p>
                     </div>
                   </div>
-                  <ChevronRight className="text-white/70" />
+                  <div className="text-white/70 group-hover:text-white group-hover:translate-x-1 transition-all duration-300">
+                    <ChevronRight size={24} />
+                  </div>
                 </div>
               </div>
 
               {/* Features Grid */}
-              <div className="grid grid-cols-2 gap-4">
-                <FeatureCard icon={<MessageCircle />} color="bg-indigo-500" onClick={()=>navigateTo('ai', 'Connecting to AI...')} title={t.aiAssistant} subtitle="Chat & Symptoms" />
-                <FeatureCard icon={<Calendar />} color="bg-sky-500" onClick={()=>navigateTo('reminders', 'Loading Reminders...')} title={t.reminders} subtitle="Meds & Checkups" />
-                <FeatureCard icon={<Apple />} color="bg-emerald-500" onClick={()=>navigateTo('nutrition', 'Loading Nutrition...')} title={t.nutrition} subtitle="Diet & Checklist" />
-                <FeatureCard icon={<Apple />} color="bg-rose-500" onClick={()=>navigateTo('fruit-guide', 'Loading Fruit Chart...')} title="Fruit Guide" subtitle="9 Month Nutrition" />
-                <FeatureCard icon={<Footprints />} color="bg-rose-400" onClick={()=>navigateTo('kickcounter', 'Loading Counter...')} title="Kick Counter" subtitle="Track Movement" />
-                <FeatureCard icon={<BookOpen />} color="bg-amber-500" onClick={()=>navigateTo('education', 'Loading Education...')} title={t.education} subtitle="Tips & Do's" />
-                <FeatureCard icon={<Dumbbell />} color="bg-pink-500" onClick={()=>navigateTo('exercises', 'Loading Yoga...')} title="யோகா பயிற்சி" subtitle="Prenatal Yoga" />
-                <FeatureCard icon={<ShoppingBag />} color="bg-teal-500" onClick={()=>navigateTo('shop', 'Loading Shop...')} title={t.shop} subtitle="Buy Natural" />
-                <FeatureCard icon={<Award />} color="bg-violet-500" onClick={()=>navigateTo('schemes', 'Loading Schemes...')} title="Govt Schemes" subtitle="Free Benefits" />
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 lg:gap-4">
+                <FeatureCard icon={<MessageCircle size={22} />} color="bg-indigo-500" onClick={()=>navigateTo('ai', 'Connecting to AI...')} title={t.aiAssistant} subtitle="Chat & Symptoms" />
+                <FeatureCard icon={<Calendar size={22} />} color="bg-sky-500" onClick={()=>navigateTo('reminders', 'Loading Reminders...')} title={t.reminders} subtitle="Meds & Checkups" />
+                <FeatureCard icon={<Apple size={22} />} color="bg-emerald-500" onClick={()=>navigateTo('nutrition', 'Loading Nutrition...')} title={t.nutrition} subtitle="Diet & Checklist" />
+                <FeatureCard icon={<Apple size={22} />} color="bg-rose-500" onClick={()=>navigateTo('fruit-guide', 'Loading Fruit Chart...')} title="Fruit Guide" subtitle="9 Month Nutrition" />
+                <FeatureCard icon={<Footprints size={22} />} color="bg-rose-400" onClick={()=>navigateTo('kickcounter', 'Loading Counter...')} title="Kick Counter" subtitle="Track Movement" />
+                <FeatureCard icon={<BookOpen size={22} />} color="bg-amber-500" onClick={()=>navigateTo('education', 'Loading Education...')} title={t.education} subtitle="Tips & Do's" />
+                <FeatureCard icon={<Dumbbell size={22} />} color="bg-pink-500" onClick={()=>navigateTo('exercises', 'Loading Yoga...')} title="யோகா பயிற்சி" subtitle="Prenatal Yoga" />
+                <FeatureCard icon={<ShoppingBag size={22} />} color="bg-teal-500" onClick={()=>navigateTo('shop', 'Loading Shop...')} title={t.shop} subtitle="Buy Natural" />
+                <FeatureCard icon={<Award size={22} />} color="bg-violet-500" onClick={()=>navigateTo('schemes', 'Loading Schemes...')} title="Govt Schemes" subtitle="Free Benefits" />
               </div>
 
 
@@ -1143,59 +1148,59 @@ export default function App() {
              
              {/* Sidebar Content */}
              <div className="relative w-72 bg-white h-full shadow-2xl animate-in slide-in-from-left duration-500 overflow-hidden flex flex-col">
-                <div className="p-6 bg-indigo-600 text-white relative">
+                <div className="p-6 bg-gradient-to-br from-indigo-600 to-indigo-700 text-white relative">
                    <div className="absolute top-4 right-4 focus:outline-none">
                       <button onClick={() => setShowSidebar(false)} className="bg-white/10 p-1.5 rounded-lg border border-white/10 hover:bg-white/20 active:scale-90 transition-all">
                         <X size={16} />
                       </button>
                    </div>
-                   <div className="w-16 h-16 rounded-full bg-slate-100 border-2 border-indigo-100 p-0.5 mb-4 shadow-xl overflow-hidden shadow-inner">
+                   <div className="w-16 h-16 rounded-full bg-slate-200 border-2 border-indigo-100 p-0.5 mb-4 shadow-xl overflow-hidden shadow-inner">
                       <img src="/yoga/breathing.png" alt="Girl Profile" className="w-full h-full object-cover rounded-full bg-white scale-125 translate-y-2" />
                    </div>
                    <h3 className="font-black text-lg truncate">Hi, {userName}!</h3>
-                   <p className="text-[10px] uppercase font-black tracking-widest text-indigo-200 mt-1 opacity-80">Maternal Premium Tier</p>
+                   <p className="text-[10px] uppercase font-bold tracking-widest text-indigo-200 mt-1 opacity-90">Maternal Care User</p>
                 </div>
 
                 <div className="flex-1 overflow-y-auto px-4 py-6 space-y-1 custom-scrollbar">
-                   <p className="text-[10px] font-black text-slate-300 uppercase tracking-widest px-2 mb-3">Main Menu</p>
+                   <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest px-2 mb-3">Main Menu</p>
                    
                    {[
                      { id: 'dashboard', label: 'Home Dashboard', icon: Layout, color: 'text-indigo-600' },
-                     { id: 'family', label: 'Maternal Profile', icon: Users, color: 'text-rose-500' },
-                     { id: 'shop', label: 'Wellness Shop', icon: ShoppingBag, color: 'text-emerald-500' },
-                     { id: 'schemes', label: 'Govt. Schemes', icon: Award, color: 'text-amber-500' },
-                     { id: 'education', label: 'Pregnancy Tips', icon: BookOpen, color: 'text-blue-500' },
+                     { id: 'family', label: 'Maternal Profile', icon: Users, color: 'text-rose-600' },
+                     { id: 'shop', label: 'Wellness Shop', icon: ShoppingBag, color: 'text-emerald-600' },
+                     { id: 'schemes', label: 'Govt. Schemes', icon: Award, color: 'text-amber-600' },
+                     { id: 'education', label: 'Pregnancy Tips', icon: BookOpen, color: 'text-blue-600' },
                    ].map(item => (
                      <button
                        key={item.id}
                        onClick={() => { navigateTo(item.id, `Entering ${item.label}...`); setShowSidebar(false); }}
-                       className="w-full flex items-center space-x-3 px-3 py-3 rounded-xl hover:bg-slate-50 active:scale-[0.98] transition-all group"
+                       className="w-full flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-gray-50 active:scale-[0.98] transition-all duration-200 group"
                      >
                        <item.icon size={18} className={`${item.color} group-hover:scale-110 transition-transform`} />
-                       <span className="text-xs font-bold text-slate-600 group-hover:text-slate-900">{item.label}</span>
+                       <span className="text-xs font-semibold text-gray-700 group-hover:text-gray-900">{item.label}</span>
                      </button>
                    ))}
 
-                   <div className="pt-4 mt-4 border-t border-slate-100">
-                      <p className="text-[10px] font-black text-slate-300 uppercase tracking-widest px-2 mb-3">Settings & Support</p>
-                      <button onClick={() => navigateTo('admin')} className="w-full flex items-center space-x-3 px-3 py-3 rounded-xl hover:bg-amber-50 transition-all group">
-                         <Settings2 size={18} className="text-amber-500" />
-                         <span className="text-xs font-bold text-slate-600">Admin Control</span>
+                   <div className="pt-4 mt-4 border-t border-gray-200">
+                      <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest px-2 mb-3">Settings & Support</p>
+                      <button onClick={() => navigateTo('admin')} className="w-full flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-amber-50 transition-all duration-200 group">
+                         <Settings2 size={18} className="text-amber-600" />
+                         <span className="text-xs font-semibold text-gray-700">Admin Control</span>
                       </button>
-                      <button className="w-full flex items-center space-x-3 px-3 py-3 rounded-xl hover:bg-slate-50 transition-all group">
-                         <HelpCircle size={18} className="text-indigo-400" />
-                         <span className="text-xs font-bold text-slate-600">Health Support</span>
+                      <button className="w-full flex items-center gap-3 px-3 py-3 rounded-lg hover:bg-indigo-50 transition-all duration-200 group">
+                         <HelpCircle size={18} className="text-indigo-500" />
+                         <span className="text-xs font-semibold text-gray-700">Health Support</span>
                       </button>
                    </div>
                 </div>
 
-                <div className="p-4 border-t border-slate-100 bg-slate-50/50">
+                <div className="p-4 border-t border-gray-200 bg-gray-50/50">
                     <button 
                       onClick={() => window.location.reload()}
-                      className="w-full flex items-center justify-center space-x-2 py-3.5 bg-rose-50 text-rose-600 rounded-2xl font-black text-xs uppercase tracking-widest border border-rose-100 hover:bg-rose-100 transition-all"
+                      className="w-full flex items-center justify-center gap-2 py-3.5 bg-rose-50 text-rose-600 rounded-xl font-bold text-xs uppercase tracking-widest border border-rose-150 hover:bg-rose-100 transition-all active:scale-95"
                     >
                       <LogOut size={16} />
-                      <span>Log Out App</span>
+                      <span>Log Out</span>
                     </button>
                 </div>
              </div>

@@ -183,14 +183,14 @@ export default function Shop({ navigateTo, t }) {
 
   return (
     <FullScreenOverlay onClose={() => navigateTo('dashboard', 'Going to Home...')} title={t.shop || "Maternal Shop"} bgColor="bg-white">
-      <div className="p-4 space-y-5">
+      <div className="p-4 lg:p-8 space-y-5 lg:space-y-6">
         
         {/* SHOP HEADER */}
-        <div className="bg-white rounded-3xl p-5 border border-slate-100 shadow-sm relative overflow-hidden">
+        <div className="bg-white rounded-3xl lg:rounded-[40px] p-5 lg:p-7 border border-slate-100 shadow-sm relative overflow-hidden">
           <div className="relative z-10">
-            <h2 className="text-lg font-black text-slate-800 mb-1">Traditional Wellness</h2>
-            <p className="text-xs font-bold text-slate-400">100% Natural Pregnancy Products</p>
-            <p className="text-[10px] text-emerald-500 font-black mt-2 uppercase tracking-widest">🎁 Free Delivery on orders ₹500+</p>
+            <h2 className="text-lg lg:text-2xl font-black text-slate-800 mb-1">Traditional Wellness</h2>
+            <p className="text-xs lg:text-sm font-bold text-slate-400">100% Natural Pregnancy Products</p>
+            <p className="text-[10px] lg:text-xs text-emerald-500 font-black mt-2 uppercase tracking-widest">🎁 Free Delivery on orders ₹500+</p>
           </div>
           <ShoppingBag className="absolute -bottom-4 -right-4 text-slate-100" size={100} />
         </div>
@@ -332,23 +332,23 @@ export default function Shop({ navigateTo, t }) {
                <button onClick={() => setSearchTerm('')} className="text-xs font-black text-indigo-500 uppercase tracking-widest">Clear Search</button>
             </div>
           ) : (
-            <div className="grid grid-cols-2 gap-3 pb-24">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 lg:gap-4 pb-24">
               {filteredProducts.map(product => {
                 const pid = product._id || product.id;
                 return (
-                  <div key={pid} className="bg-white rounded-2xl p-4 border border-slate-100 shadow-sm flex flex-col">
-                    <div className="flex items-center justify-between mb-2">
-                      <span className="text-2xl">{product.emoji}</span>
+                  <div key={pid} className="bg-white rounded-2xl lg:rounded-3xl p-4 lg:p-5 border border-slate-100 shadow-sm flex flex-col">
+                    <div className="flex items-center justify-between mb-2 lg:mb-3">
+                      <span className="text-2xl lg:text-3xl">{product.emoji}</span>
                       {cart[pid] && (
-                        <span className="bg-indigo-50 text-indigo-600 text-[9px] font-black px-2 py-0.5 rounded-full">x{cart[pid]}</span>
+                        <span className="bg-indigo-50 text-indigo-600 text-[9px] font-black px-2 py-0.5 rounded-full"># {cart[pid]}</span>
                       )}
                     </div>
-                    <h4 className="font-bold text-[11px] text-slate-800 leading-tight mb-1 flex-1">{product.name}</h4>
-                    <p className="text-[9px] text-slate-400 font-bold uppercase tracking-wider mb-3">{product.benefit}</p>
+                    <h4 className="font-bold text-[11px] lg:text-xs text-slate-800 leading-tight mb-1 lg:mb-2 flex-1">{product.name}</h4>
+                    <p className="text-[9px] lg:text-[10px] text-slate-400 font-bold uppercase tracking-wider mb-3 lg:mb-4">{product.benefit}</p>
                     
-                    <div className="flex items-center justify-between mt-auto pt-3 border-t border-slate-50">
-                      <p className="font-black text-slate-800 text-sm">₹{product.price}</p>
-                      <button onClick={() => addToCart(pid)} className="bg-slate-50 text-slate-600 w-8 h-8 rounded-full flex items-center justify-center hover:bg-indigo-50 hover:text-indigo-600 transition-colors active:scale-90 border border-slate-100">
+                    <div className="flex items-center justify-between mt-auto pt-3 lg:pt-4 border-t border-slate-50">
+                      <p className="font-black text-slate-800 text-sm lg:text-base">₹{product.price}</p>
+                      <button onClick={() => addToCart(pid)} className="bg-slate-50 text-slate-600 w-8 h-8 lg:w-9 lg:h-9 rounded-full flex items-center justify-center hover:bg-indigo-50 hover:text-indigo-600 transition-colors active:scale-90 border border-slate-100">
                         <Plus size={16} />
                       </button>
                     </div>

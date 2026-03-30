@@ -168,28 +168,28 @@ export default function Schemes({ navigateTo, t, userName, contact }) {
         </div>
 
         {/* SCHEMES LIST */}
-        <div className="space-y-3 pb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-3 lg:gap-4 pb-20">
           {filteredSchemes.length === 0 ? (
-            <div className="py-12 flex flex-col items-center text-center space-y-3 bg-slate-50 rounded-3xl border border-slate-100 border-dashed">
+            <div className="col-span-full py-12 flex flex-col items-center text-center space-y-3 bg-slate-50 rounded-3xl border border-slate-100 border-dashed">
                <Award size={40} className="text-slate-200" />
                <p className="text-sm font-bold text-slate-400">No schemes found matching your search.</p>
                <button onClick={() => setSearchTerm('')} className="text-xs font-black text-indigo-500 uppercase tracking-widest">Clear Search</button>
             </div>
           ) : (
             filteredSchemes.map(scheme => (
-              <div key={scheme.id} className={`bg-white rounded-2xl border ${scheme.border} shadow-sm overflow-hidden transition-all`}>
+              <div key={scheme.id} className={`bg-white rounded-2xl lg:rounded-3xl border ${scheme.border} shadow-sm overflow-hidden transition-all`}>
               
               {/* Scheme Header */}
-              <div className="p-4 cursor-pointer" onClick={() => toggleExpand(scheme.id)}>
+              <div className="p-4 lg:p-5 cursor-pointer" onClick={() => toggleExpand(scheme.id)}>
                 <div className="flex items-start space-x-3">
-                  <div className={`${scheme.bg} ${scheme.color} w-11 h-11 rounded-xl flex items-center justify-center shrink-0`}>
+                  <div className={`${scheme.bg} ${scheme.color} w-11 h-11 lg:w-12 lg:h-12 rounded-xl flex items-center justify-center shrink-0`}>
                     {scheme.icon}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="font-bold text-xs text-slate-800 leading-tight">{scheme.name}</h3>
-                    <p className="text-[10px] text-slate-400 mt-0.5">{scheme.nameTA}</p>
+                    <h3 className="font-bold text-xs lg:text-sm text-slate-800 leading-tight">{scheme.name}</h3>
+                    <p className="text-[10px] lg:text-xs text-slate-400 mt-0.5">{scheme.nameTA}</p>
                     <div className="flex items-center justify-between mt-2">
-                      <span className={`${scheme.bg} ${scheme.color} text-xs font-black px-2.5 py-1 rounded-lg`}>{scheme.amount}</span>
+                      <span className={`${scheme.bg} ${scheme.color} text-xs lg:text-sm font-black px-2.5 py-1 rounded-lg`}>{scheme.amount}</span>
                       {expandedId === scheme.id ? <ChevronUp size={16} className="text-slate-400" /> : <ChevronDown size={16} className="text-slate-400" />}
                     </div>
                   </div>

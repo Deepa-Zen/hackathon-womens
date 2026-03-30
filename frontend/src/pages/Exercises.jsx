@@ -469,30 +469,30 @@ export default function Exercises({ navigateTo, t, speak }) {
 
   return (
     <FullScreenOverlay onClose={() => navigateTo('dashboard', 'Going Home...')} title="யோகா பயிற்சி" bgColor="bg-slate-50">
-      <div className="pb-24">
+      <div className="pb-24 lg:pb-8">
 
         {/* Stats Header */}
-        <div className={`bg-gradient-to-r ${monthData.theme} px-5 pt-2 pb-5`}>
-          <div className="grid grid-cols-3 gap-3 mb-2">
-            <div className="bg-white/20 rounded-2xl p-3 text-center">
-              <p className="text-xl font-black text-white">{streakDays}</p>
-              <p className="text-[9px] text-white/80 font-black uppercase tracking-widest">Day Streak 🔥</p>
+        <div className={`bg-gradient-to-r ${monthData.theme} px-5 lg:px-8 pt-2 pb-5 lg:py-6`}>
+          <div className="grid grid-cols-3 lg:grid-cols-3 gap-3 lg:gap-4 mb-2">
+            <div className="bg-white/20 rounded-2xl lg:rounded-3xl p-3 lg:p-4 text-center">
+              <p className="text-xl lg:text-2xl font-black text-white">{streakDays}</p>
+              <p className="text-[9px] lg:text-[10px] text-white/80 font-black uppercase tracking-widest">Day Streak 🔥</p>
             </div>
-            <div className="bg-white/20 rounded-2xl p-3 text-center">
-              <p className="text-xl font-black text-white">{completedCount}/{totalPoses}</p>
-              <p className="text-[9px] text-white/80 font-black uppercase tracking-widest">Today Done ✅</p>
+            <div className="bg-white/20 rounded-2xl lg:rounded-3xl p-3 lg:p-4 text-center">
+              <p className="text-xl lg:text-2xl font-black text-white">{completedCount}/{totalPoses}</p>
+              <p className="text-[9px] lg:text-[10px] text-white/80 font-black uppercase tracking-widest">Today Done ✅</p>
             </div>
-            <div className="bg-white/20 rounded-2xl p-3 text-center">
-              <p className="text-xl font-black text-white">M{selectedMonth}</p>
-              <p className="text-[9px] text-white/80 font-black uppercase tracking-widest">Month 🌸</p>
+            <div className="bg-white/20 rounded-2xl lg:rounded-3xl p-3 lg:p-4 text-center">
+              <p className="text-xl lg:text-2xl font-black text-white">M{selectedMonth}</p>
+              <p className="text-[9px] lg:text-[10px] text-white/80 font-black uppercase tracking-widest">Month 🌸</p>
             </div>
           </div>
-          <p className="text-[11px] text-white/80 font-bold text-center">{monthData.tip}</p>
+          <p className="text-[11px] lg:text-xs text-white/80 font-bold text-center">{monthData.tip}</p>
         </div>
 
         {/* Month Selector */}
-        <div className="px-5 pt-4 mb-4">
-          <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2">மாதம் தேர்வு செய்யவும்</p>
+        <div className="px-5 lg:px-8 pt-4 mb-4 lg:mb-6">
+          <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-2 lg:mb-3">மாதம் தேர்வு செய்யவும்</p>
           <div className="flex space-x-2 overflow-x-auto no-scrollbar pb-1">
             {Object.keys(YOGA_DATA).map(m => {
               const mNum = parseInt(m);
@@ -526,7 +526,7 @@ export default function Exercises({ navigateTo, t, speak }) {
         )}
 
         {/* Poses */}
-        <div className="px-5 space-y-0">
+        <div className="px-5 lg:px-8 space-y-0">
           {monthData.poses.map(pose => (
             <PoseCard
               key={pose.id}
@@ -539,8 +539,8 @@ export default function Exercises({ navigateTo, t, speak }) {
         </div>
 
         {/* Progress History */}
-        <div className="mx-5 mt-2 bg-white rounded-3xl p-5 border border-slate-100 shadow-sm">
-          <h4 className="font-black text-slate-800 text-xs uppercase tracking-widest mb-3 flex items-center">
+        <div className="mx-5 lg:mx-8 mt-2 lg:mt-4 bg-white rounded-3xl p-5 lg:p-6 border border-slate-100 shadow-sm">
+          <h4 className="font-black text-slate-800 text-xs lg:text-sm uppercase tracking-widest mb-3 lg:mb-4 flex items-center">
             <Flame size={14} className="mr-1.5 text-orange-500" /> Weekly Progress
           </h4>
           <div className="flex space-x-2">
